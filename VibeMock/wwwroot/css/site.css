@@ -94,15 +94,17 @@ body {
   position: relative;
   z-index: 1;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  will-change: transform;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero-section .btn:hover,
 .hero-section .btn:focus {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  outline: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.hero-section .btn:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.9);
   outline-offset: 2px;
 }
 
