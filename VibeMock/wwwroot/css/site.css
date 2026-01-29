@@ -1,110 +1,159 @@
+/* Modern CSS Variables for theming and maintainability */
+:root {
+  /* Color Palette */
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-spa-dark: #0a4d4e;
+  --color-spa-light: #64d8db;
+  --color-spa-mid-1: #1a7a7d;
+  --color-spa-mid-2: #2d9ca0;
+  --color-spa-mid-3: #48c6c9;
+  
+  /* Neutral Colors */
+  --color-bg-light: #f8f9fa;
+  --color-text-dark: #333;
+  --color-text-muted: #6c757d;
+  --color-white: #ffffff;
+  
+  /* Spacing Scale */
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 2vw, 1rem);
+  --space-md: clamp(1rem, 3vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 4vw, 2.5rem);
+  --space-xl: clamp(2rem, 6vw, 4rem);
+  --space-2xl: clamp(3rem, 8vw, 7.5rem);
+  
+  /* Typography Scale with fluid sizing */
+  --font-size-base: clamp(14px, 1vw + 0.5rem, 16px);
+  --font-size-sm: clamp(0.75rem, 0.8vw + 0.4rem, 0.875rem);
+  --font-size-lg: clamp(1.125rem, 1.2vw + 0.5rem, 1.25rem);
+  --font-size-xl: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+  --font-size-2xl: clamp(2rem, 3vw + 1rem, 3.5rem);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-btn: 0 4px 15px rgba(0, 0, 0, 0.2);
+  --shadow-btn-hover: 0 6px 20px rgba(0, 0, 0, 0.3);
+  
+  /* Border Radius */
+  --radius-sm: 10px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
+  font-size: var(--font-size-base);
   position: relative;
-  min-height: 100%;
+  min-block-size: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+  margin-block-end: 60px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Hero Section */
-.hero-section {
-  position: relative;
-  background: linear-gradient(135deg, #0a4d4e 0%, #1a7a7d 25%, #2d9ca0 50%, #48c6c9 75%, #64d8db 100%);
-  color: white;
-  padding: 120px 0;
-  text-align: center;
-  margin-bottom: 50px;
-  overflow: hidden;
+/* Modern button focus states */
+:is(.btn, .btn-link.nav-link, .form-control, .form-check-input):focus {
+  box-shadow: 0 0 0 0.1rem var(--color-white), 0 0 0 0.25rem #258cfb;
 }
 
+/* Modern Hero Section with CSS Variables and advanced features */
+.hero-section {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    var(--color-spa-dark) 0%,
+    var(--color-spa-mid-1) 25%,
+    var(--color-spa-mid-2) 50%,
+    var(--color-spa-mid-3) 75%,
+    var(--color-spa-light) 100%
+  );
+  color: var(--color-white);
+  padding-block: var(--space-2xl);
+  text-align: center;
+  margin-block-end: var(--space-xl);
+  overflow: hidden;
+  min-block-size: clamp(400px, 50vh, 600px);
+  display: grid;
+  place-items: center;
+}
+
+/* Modern gradient overlays using custom properties */
 .hero-section::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-image: 
-    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(100, 216, 219, 0.2) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgb(255 255 255 / 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgb(255 255 255 / 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgb(100 216 219 / 0.2) 0%, transparent 50%);
   pointer-events: none;
 }
 
 .hero-section::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-image: 
-    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%);
+    repeating-conic-gradient(
+      from 45deg,
+      rgb(255 255 255 / 0.03) 0deg 90deg,
+      transparent 90deg 180deg
+    );
   background-size: 60px 60px;
-  background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
   opacity: 0.4;
   pointer-events: none;
 }
 
 .hero-section h1 {
-  font-size: 3.5rem;
+  font-size: var(--font-size-2xl);
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-block-end: var(--space-md);
   animation: fadeInUp 1s ease-out;
   position: relative;
   z-index: 1;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  letter-spacing: 1px;
+  text-shadow: 0 2px 20px rgb(0 0 0 / 0.2);
+  letter-spacing: 0.02em;
 }
 
 .hero-section p {
-  font-size: 1.25rem;
-  margin-bottom: 30px;
+  font-size: var(--font-size-lg);
+  margin-block-end: var(--space-lg);
   opacity: 0.95;
   animation: fadeInUp 1s ease-out 0.2s both;
   position: relative;
   z-index: 1;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 10px rgb(0 0 0 / 0.15);
+  max-inline-size: 60ch;
+  margin-inline: auto;
 }
 
 .hero-section .btn {
-  padding: 12px 40px;
-  font-size: 1.1rem;
-  border-radius: 30px;
+  padding-block: clamp(0.75rem, 1.5vw, 1rem);
+  padding-inline: clamp(2rem, 4vw, 2.5rem);
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-full);
   animation: fadeInUp 1s ease-out 0.4s both;
   position: relative;
   z-index: 1;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-btn);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
-.hero-section .btn:hover,
-.hero-section .btn:focus {
+:is(.hero-section .btn:hover, .hero-section .btn:focus) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-btn-hover);
 }
 
 .hero-section .btn:focus {
-  outline: 3px solid rgba(255, 255, 255, 0.9);
+  outline: 3px solid rgb(255 255 255 / 0.9);
   outline-offset: 2px;
 }
 
@@ -119,80 +168,90 @@ body {
   }
 }
 
-/* Cards */
+/* Modern Cards with CSS Grid and aspect-ratio */
 .card-custom {
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
   overflow: hidden;
-  margin-bottom: 30px;
+  margin-block-end: var(--space-lg);
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 .card-custom:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .card-custom img {
-  height: 200px;
+  block-size: 200px;
   object-fit: cover;
+  aspect-ratio: 16 / 9;
 }
 
 .card-custom .card-body {
-  padding: 25px;
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-sm);
 }
 
 .card-custom .card-title {
   font-weight: 600;
-  color: #667eea;
+  color: var(--color-primary);
 }
 
 .card-custom .badge {
-  font-size: 0.75rem;
-  padding: 5px 10px;
-  border-radius: 20px;
+  font-size: var(--font-size-sm);
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-sm);
+  border-radius: var(--radius-lg);
+  width: fit-content;
 }
 
-/* Navigation */
+/* Modern Navigation */
 .navbar {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .navbar-brand {
   font-weight: 700;
-  font-size: 1.5rem;
-  color: #667eea !important;
+  font-size: var(--font-size-xl);
+  color: var(--color-primary) !important;
 }
 
-/* Footer */
+/* Footer with logical properties */
 .footer {
-  background-color: #f8f9fa;
-  padding: 20px 0;
+  background-color: var(--color-bg-light);
+  padding-block: var(--space-md);
 }
 
-/* Sections */
+/* Modern Section Titles */
 .section-title {
-  font-size: 2.5rem;
+  font-size: var(--font-size-2xl);
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-block-end: var(--space-xl);
   text-align: center;
-  color: #333;
+  color: var(--color-text-dark);
 }
 
-/* Features Section */
+/* Features Section with CSS Grid */
 .features-section {
-  padding: 60px 0;
-  background-color: #f8f9fa;
+  padding-block: var(--space-2xl);
+  background-color: var(--color-bg-light);
 }
 
 .feature-box {
   text-align: center;
-  padding: 30px;
-  background: white;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
+  padding: var(--space-lg);
+  background: var(--color-white);
+  border-radius: var(--radius-sm);
+  margin-block-end: var(--space-md);
+  transition: transform var(--transition-base);
+  display: grid;
+  gap: var(--space-md);
+  place-items: center;
 }
 
 .feature-box:hover {
@@ -200,23 +259,52 @@ body {
 }
 
 .feature-box i {
-  font-size: 3rem;
-  color: #667eea;
-  margin-bottom: 20px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-primary);
 }
 
 .feature-box h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
+  font-size: var(--font-size-xl);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Modern Responsive with container queries fallback */
+@container (max-width: 768px) {
   .hero-section h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-size-xl);
   }
   
   .hero-section p {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Fallback for browsers without container query support */
+@supports not (container-type: inline-size) {
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: var(--font-size-xl);
+    }
+    
+    .hero-section p {
+      font-size: var(--font-size-base);
+    }
+  }
+}
+
+/* Modern utility for smooth scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
