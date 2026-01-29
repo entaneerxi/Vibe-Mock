@@ -37,10 +37,10 @@
   --shadow-btn: 0 4px 15px rgba(0, 0, 0, 0.2);
   --shadow-btn-hover: 0 6px 20px rgba(0, 0, 0, 0.3);
   
-  /* Border Radius */
-  --radius-sm: 10px;
-  --radius-md: 15px;
-  --radius-lg: 20px;
+  /* Border Radius - using rem for better scaling */
+  --radius-sm: 0.625rem;
+  --radius-md: 0.9375rem;
+  --radius-lg: 1.25rem;
   --radius-full: 9999px;
   
   /* Transitions */
@@ -55,7 +55,7 @@ html {
 }
 
 body {
-  margin-block-end: 60px;
+  margin-block-end: var(--space-2xl);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -148,15 +148,15 @@ body {
 }
 
 .hero-section .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-0.125rem);
   box-shadow: var(--shadow-btn-hover);
 }
 
 .hero-section .btn:focus {
-  transform: translateY(-2px);
+  transform: translateY(-0.125rem);
   box-shadow: var(--shadow-btn-hover);
-  outline: 3px solid rgb(255 255 255 / 0.9);
-  outline-offset: 2px;
+  outline: 0.1875rem solid rgb(255 255 255 / 0.9);
+  outline-offset: 0.125rem;
 }
 
 @keyframes fadeInUp {
@@ -183,7 +183,7 @@ body {
 }
 
 .card-custom:hover {
-  transform: translateY(-10px);
+  transform: translateY(-0.625rem);
   box-shadow: var(--shadow-lg);
 }
 
@@ -256,7 +256,7 @@ body {
 }
 
 .feature-box:hover {
-  transform: translateY(-5px);
+  transform: translateY(-0.3125rem);
 }
 
 .feature-box i {
